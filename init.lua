@@ -1,15 +1,30 @@
---Remember order matters, a wierd error such as index a boolean 
 --Depends on an error in the order
+require("user.options")
+require("plugins.plugins")
 
-if vim.fn.filereadable("/usr/bin/clangd") > 0 then
- vim.notify("BLA")
- else
-   vim.notify("NOO")
-end
-require "user.options"
-require "user.keymap"
-require "plugins.plugins"
-require "user.colorscheme"
-require "user.cmp"
-require "lsp"
+require("user.notify") --Handles error messages
+require("user.colorscheme") -- OneDark -> Darker
+require("user.ntree") --File explorer tree
+require("user.bufferline") --Top line to track open buffers
+require("user.lualine") -- Bottom highlight line.
+require("user.gitsigns") -- Git interaction
 
+require("user.telescope") --Fuzzy Finder
+require("user.project") --Project handler for telescope
+require("user.alpha") -- Dashboard
+require("user.toggleterm") --Floating terminal window
+require("lsp")
+require("user.cmp")
+require("user.colorhighlight")
+--[[ --TreeSitter dependant: ]]
+require("treesitter")
+require("user.indentline")
+require("user.autopairs")
+require("user.comment")
+require("user.glow")
+--
+require("user.whichkey")
+
+require("web.rest")
+
+require("user.keymap")

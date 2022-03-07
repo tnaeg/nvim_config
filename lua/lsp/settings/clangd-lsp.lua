@@ -1,29 +1,24 @@
-require'lspconfig'.clangd.setup{}
+local clangd_flags = {
+    "clangd",
+  "--all-scopes-completion",
+  "--suggest-missing-includes",
+  "--background-index",
+  "--pch-storage=disk",
+  "--cross-file-rename",
+  "--log=info",
+  "--completion-style=detailed",
+  "--enable-config", -- clangd 11+ supports reading from .clangd configuration file
+  "--clang-tidy",
+  "--offset-encoding=utf-8",
+  "--fallback-style=Google",
+}
 
-local C = {}
 
-C.setup = function()
-
-
-  local gCPP = {
-    cpp_class_scope_highlight = 1,
-    cpp_member_variable_highlight = 1,
-    cpp_class_decl_highlight = 1,
-    syntastic_cpp_checkers = vim.fn('cpplint'),
-    syntastic_cpp_checkers = vim.fn('cpplint'),
-    syntastic_cpp_cpplint_exec = 'cpplint',
-    syntastic_check_on_open = 1,
+return {
+  --capabilities
+  cmd = clangd_flags,
+  filetypes = {"c", "cpp", "h", "hpp", "objc", "objcpp" },
+  flags = {
+        debounce_text_changes = 150
   }
-
-  for k,v in pairs(gCPP) do
-    vim.g[k] = v
-  end
-
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>f",
-  ":<C-u>ClangFormat<CR>",
-  {noremap = true }
-)
-end
-return C
+}

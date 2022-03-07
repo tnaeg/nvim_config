@@ -1,6 +1,10 @@
-local colorscheme = "onedarker"
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+local status_ok, onedark = pcall(require, "onedark")
 if not status_ok then
-  vim.notify("colorscheme " .. colorscheme .. " not found!")
   return
 end
+
+onedark.setup {
+  style = 'deep',
+}
+
+onedark.load()
