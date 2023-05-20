@@ -22,7 +22,7 @@ lsp_installer.setup({
 --vim.lsp.set_log_level("ERROR")
 
 local localServers =
-	{ "clangd", "pyright", "tsserver", "lua_ls", "cmake", "glsl", "html", "cssls", "tailwindcss", "jsonls", "dockerls", "angularls" }
+	{ "clangd", "pyright", "tsserver", "lua_ls", "cmake", "glsl", "html", "cssls", "tailwindcss", "jsonls", "dockerls", "angularls", "prismals"}
 for _, lsp in ipairs(localServers) do
 	local opts = {
 		on_attach = require("lsp.handlers").on_attach,

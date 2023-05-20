@@ -1,5 +1,0 @@
-{
-  "Lua.runtime.version": "LuaJIT",
-  "Lua.completion.callSnippet": "Both",
-  "Lua.completion.keywordSnippet": "Both"
-}

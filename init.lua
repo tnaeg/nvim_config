@@ -1,6 +1,6 @@
 --Depends on an error in the order
-require("user.options")
-require("plugins.plugins")
+--require("user.options")
+--[[ require("plugins.plugins")
 
 require("user.notify") --Handles error messages
 require("user.colorscheme") -- OneDark -> Darker
@@ -17,7 +17,7 @@ require("lsp")
 require("user.cmp")
 require("user.colorhighlight")
 --[[ --TreeSitter dependant: ]]
-require("treesitter")
+--[[require("treesitter")
 require("user.indentline")
 require("user.autopairs")
 require("user.comment")
@@ -27,4 +27,6 @@ require("user.whichkey")
 
 require("web.rest")
 
-require("user.keymap")
+require("user.keymap") ]]
+
+require("base")
