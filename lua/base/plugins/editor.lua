@@ -5,13 +5,13 @@ return {
 	-- file explorer
 	{
 		"nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
+		branch = "v3.x",
 		cmd = "Neotree",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-    },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+		},
 		keys = {
 			{
 				"<leader>fe",
@@ -29,20 +29,20 @@ return {
 			},
 			{ "<leader>e", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
 			{ "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
-      {
-       "<leader>ge",
-        function()
-          require("neo-tree.command").execute({ source = "git_status", toggle = true })
-        end,
-        desc = "Git explorer",
-      },
-      {
-        "<leader>be",
-        function()
-          require("neo-tree.command").execute({ source = "buffers", toggle = true })
-        end,
-        desc = "Buffer explorer",
-      },
+			{
+				"<leader>ge",
+				function()
+					require("neo-tree.command").execute({ source = "git_status", toggle = true })
+				end,
+				desc = "Git explorer",
+			},
+			{
+				"<leader>be",
+				function()
+					require("neo-tree.command").execute({ source = "buffers", toggle = true })
+				end,
+				desc = "Buffer explorer",
+			},
 		},
 		deactivate = function()
 			vim.cmd([[Neotree close]])
@@ -88,15 +88,15 @@ return {
 			},
 		},
 		config = function(_, opts)
-      local function on_move(data)
-        Util.lsp.on_rename(data.source, data.destination)
-      end
-      local events = require("neo-tree.events")
-      opts.event_handlers = opts.event_handlers or {}
-      vim.list_extend(opts.event_handlers, {
-        { event = events.FILE_MOVED, handler = on_move },
-        { event = events.FILE_RENAMED, handler = on_move },
-      })
+			local function on_move(data)
+				Util.lsp.on_rename(data.source, data.destination)
+			end
+			local events = require("neo-tree.events")
+			opts.event_handlers = opts.event_handlers or {}
+			vim.list_extend(opts.event_handlers, {
+				{ event = events.FILE_MOVED, handler = on_move },
+				{ event = events.FILE_RENAMED, handler = on_move },
+			})
 			require("neo-tree").setup(opts)
 			vim.api.nvim_create_autocmd("TermClose", {
 				pattern = "*lazygit",

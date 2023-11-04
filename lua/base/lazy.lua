@@ -22,6 +22,7 @@ require("lazy").setup({
 		{ import = "code.outline.symbols" },
 		{ import = "code.testing" },
 		{ import = "code.display.barbecue" },
+		{ import = "code.display.ntree-picker" },
 		--{ import = "code.completion" },
 	},
 	defaults = {
