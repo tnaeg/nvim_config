@@ -13,23 +13,23 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	spec = {
-		{ import = "base.plugins" },
-		{ import = "base.plugins.extras.lang" },
-		{ import = "base.plugins.extras.formatting" },
-		{ import = "base.plugins.extras.util.project" },
-		{ import = "base.plugins.extras.util.telemedia" },
-		{ import = "base.plugins.extras.dap" },
-		{ import = "code.outline.symbols" },
-		{ import = "code.testing" },
-		{ import = "code.display.barbecue" },
-		{ import = "code.display.ntree-picker" },
-		--{ import = "code.completion" },
+		{ import = "base.ui" },
+		{ import = "base.coding.coding" },
+		{ import = "base.coding.dap" },
+		{ import = "base.lsp" },
+		{ import = "base.coding.formatting" },
+		{ import = "base.coding.linting" },
+		{ import = "coding.outline.arials" },
+		{ import = "coding.testing" },
+		{ import = "coding.lang" },
+		{ import = "coding.editor" },
+		{ import = "coding.display" },
 	},
 	defaults = {
 		lazy = false,
 		version = false,
 	},
-	install = { colorscheme = { "tokyonight", "habamax", "onedark" } },
+	install = { colorscheme = { "tokyonight", "onedark" } },
 	checker = { enabled = true },
 	performance = {
 		rtp = {

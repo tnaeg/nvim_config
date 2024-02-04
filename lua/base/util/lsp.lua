@@ -69,6 +69,7 @@ function M.disable(server, cond)
 	local def = M.get_config(server)
 	---@diagnostic disable-next-line: undefined-field
 	def.document_config.on_new_config = util.add_hook_before(
+		---@diagnostic disable-next-line: undefined-field
 		def.document_config.on_new_config,
 		function(config, root_dir)
 			if cond(root_dir, config) then
@@ -78,13 +79,13 @@ function M.disable(server, cond)
 	)
 end
 
----@param opts? LazyFormatter| {filter?: (string|lsp.Client.filter)}
+---@param opts? Formatter| {filter?: (string|lsp.Client.filter)}
 function M.formatter(opts)
 	opts = opts or {}
 	local filter = opts.filter or {}
 	filter = type(filter) == "string" and { name = filter } or filter
 	---@cast filter lsp.Client.filter
-	---@type LazyFormatter
+	---@type Formatter
 	local ret = {
 		name = "LSP",
 		primary = true,
@@ -105,7 +106,7 @@ function M.formatter(opts)
 			end, ret)
 		end,
 	}
-	return Util.merge(ret, opts) --[[@as LazyFormatter]]
+	return Util.merge(ret, opts) --[[@as Formatter]]
 end
 
 ---@alias lsp.Client.format {timeout_ms?: number, format_options?: table} | lsp.Client.filter

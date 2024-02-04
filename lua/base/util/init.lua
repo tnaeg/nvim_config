@@ -1,4 +1,4 @@
-local LazyUtil = require("lazy.core.util")
+local Util = require("lazy.core.util")
 
 ---@class base.util: LazyUtilCore
 ---@field ui base.util.ui
@@ -9,14 +9,12 @@ local LazyUtil = require("lazy.core.util")
 ---@field toggle base.util.toggle
 ---@field format base.util.format
 ---@field plugin base.util.plugin
----@field extras base.util.extras
 ---@field inject base.util.inject
----@field json base.util.json
 ---@field lualine base.util.lualine
 local M = {}
 
 ---@type table<string, string|string[]>
-local deprecated = {
+local deps = {
 	get_clients = "lsp",
 	on_attach = "lsp",
 	on_rename = "lsp",
@@ -30,14 +28,13 @@ local deprecated = {
 
 setmetatable(M, {
 	__index = function(t, k)
-		if LazyUtil[k] then
-			return LazyUtil[k]
+		if Util[k] then
+			return Util[k]
 		end
-		local dep = deprecated[k]
+		local dep = deps[k]
 		if dep then
 			local mod = type(dep) == "table" and dep[1] or dep
 			local key = type(dep) == "table" and dep[2] or k
-			M.deprecate([[require("base.util").]] .. k, [[require("base.util").]] .. mod .. "." .. key)
 			---@diagnostic disable-next-line: no-unknown
 			t[mod] = require("base.util." .. mod) -- load here to prevent loops
 			return t[mod][key]
@@ -48,8 +45,13 @@ setmetatable(M, {
 	end,
 })
 
+function M.is_win()
+	return vim.loop.os_uname().sysname:find("Windows") ~= nil
+end
+
 ---@param plugin string
 function M.has(plugin)
+	-- ask lazy to check if a plugin is loaded
 	return require("lazy.core.config").spec.plugins[plugin] ~= nil
 end
 
@@ -71,15 +73,6 @@ function M.opts(name)
 	end
 	local Plugin = require("lazy.core.plugin")
 	return Plugin.values(plugin, "opts", false)
-end
-
-function M.deprecate(old, new)
-	M.warn(("`%s` is deprecated. Please use `%s` instead"):format(old, new), {
-		title = "base",
-		once = true,
-		stacktrace = true,
-		stacklevel = 6,
-	})
 end
 
 -- delay notifications till vim.notify was replaced or after 500ms

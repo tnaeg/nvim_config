@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.g.autoformat = true
-vim.g.root_spec = { "lsp", {".git", "lua"}, "cwd"}
+vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 local opt = vim.opt
 
 opt.autowrite = true -- Enable auto write
@@ -24,10 +24,10 @@ opt.pumblend = 10 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
 opt.relativenumber = true -- Relative line numbers
 opt.scrolloff = 4 -- Lines of context
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp" }
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 opt.shiftround = true -- Round indent
 opt.shiftwidth = 2 -- Size of an indent
-opt.shortmess:append({ W = true, I = true, c = true, C = true})
+opt.shortmess:append({ W = true, I = true, c = true, C = true })
 opt.showmode = false -- Dont show mode since we have a statusline
 opt.sidescrolloff = 8 -- Columns of context
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
@@ -48,13 +48,13 @@ opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.wrap = false -- Disable line wrap
 opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  -- fold = "⸱",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
+	foldopen = "",
+	foldclose = "",
+	-- fold = "⸱",
+	fold = " ",
+	foldsep = " ",
+	diff = "╱",
+	eob = " ",
 }
 opt.backup = false
 opt.cmdheight = 2
@@ -74,7 +74,12 @@ opt.colorcolumn = "80"
 
 vim.opt.foldlevel = 99
 vim.opt.foldtext = "v:lua.require'base.util'.ui.foldtext()"
-vim.opt.statuscolumn = [[%!v:lua.require'base.util'.ui.statuscolumn()]]
+vim.opt.foldmethod = "indent"
+if vim.fn.has("nvim-0.9.0") == 1 then
+	vim.opt.statuscolumn = [[%!v:lua.require'base.util'.ui.statuscolumn()]]
+end
+
+vim.o.formatexpr = "v:lua.require'base.util'.format.formatexpr()"
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
