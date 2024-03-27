@@ -441,4 +441,14 @@ return {
 			}
 		end,
 	},
+
+	{
+		"xiyaowong/transparent.nvim",
+		lazy = true,
+		opts = function() end,
+		cmd = { "TransparentEnable", "TransparentDisable", "TransparentToggle" },
+		config = function(opts)
+			require("transparent").setup(opts)
+		end,
+	},
 }

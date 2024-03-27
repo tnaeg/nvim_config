@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field
 local Util = require("base.util")
 
 return {
@@ -66,6 +67,7 @@ return {
 						local path = node:get_id()
 						vim.fn.setreg("+", path, "c")
 					end,
+					desc = "Copy path to clipboard",
 				},
 			},
 			default_component_configs = {
@@ -123,7 +125,6 @@ return {
 	-- fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
-		commit = vim.fn.has("nvim-0.9.0") == 0 and "057ee0f8783" or nil,
 		cmd = "Telescope",
 		version = false, -- telescope did only one release, so use HEAD for now
 		dependencies = {
@@ -308,7 +309,6 @@ return {
 			})
 		end,
 	},
-
 	-- which-key
 	{
 		"folke/which-key.nvim",
@@ -344,7 +344,7 @@ return {
 	-- git signs
 	{
 		"lewis6991/gitsigns.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		event = "LazyFile",
 		opts = {
 			signs = {
 				add = { text = "▎" },
@@ -381,7 +381,7 @@ return {
 	-- references
 	{
 		"RRethy/vim-illuminate",
-		event = { "BufReadPost", "BufNewFile" },
+		event = "LazyFile",
 		opts = {
 			delay = 200,
 			large_file_cutoff = 2000,

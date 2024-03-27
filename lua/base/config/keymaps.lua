@@ -141,6 +141,7 @@ map("n", "<leader>ft", floatterm, { desc = "Terminal (root dir)" })
 map("n", "<leader>fT", function() Util.terminal() end, { desc = "Terminal (cwd)" })
 map("n", "<c-/>", floatterm, { desc = "Terminal (root dir)" })
 map("n", "<c-_>", floatterm, { desc = "which_key_ignore" })
+map("n", "<leader>fS", "<cmd>terminal<CR>", { desc = "Terminal" })
 
 -- Terminal Mappings
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })

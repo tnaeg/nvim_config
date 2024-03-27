@@ -14,16 +14,16 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	spec = {
 		{ import = "base.ui" },
-		{ import = "base.coding.coding" },
-		{ import = "base.coding.dap" },
+		{ import = "base.coding" },
 		{ import = "base.lsp" },
-		{ import = "base.coding.formatting" },
-		{ import = "base.coding.linting" },
 		{ import = "coding.outline.arials" },
-		{ import = "coding.testing" },
-		{ import = "coding.lang" },
+		{ import = "coding.testing.core" },
 		{ import = "coding.editor" },
 		{ import = "coding.display" },
+		{ import = "coding.lang.rust" },
+		{ import = "coding.lang.json" },
+		{ import = "coding.lang.markdown" },
+		{ import = "coding.lang.lua" },
 	},
 	defaults = {
 		lazy = false,

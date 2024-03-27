@@ -2,5 +2,9 @@
     "diagnostics.globals": [
         "vim",
         "glslls"
+    ],
+    "diagnostics.disable": [
+        "missing-fields",
+        "undefined-doc-name"
     ]
 }

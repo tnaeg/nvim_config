@@ -14,8 +14,6 @@ local clangd_flags = {
 }
 
 return {
-
-	-- add typescript to treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
 		opts = function(_, opts)

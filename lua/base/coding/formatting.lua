@@ -13,21 +13,12 @@ function M.setup(_, opts)
 			if formatter.extra_args then
 				---@diagnostic disable-next-line: undefined-field
 				formatter.prepend_args = formatter.extra_args
-				Util.deprecate(
-					("opts.formatters.%s.extra_args"):format(name),
-					("opts.formatters.%s.prepend_args"):format(name)
-				)
 			end
 		end
 	end
 
 	for _, key in ipairs({ "format_on_save", "format_after_save" }) do
 		if opts[key] then
-			Util.warn(
-				("Don't set `opts.%s` for `conform.nvim`.\n**LazyVim** will use the conform formatter automatically"):format(
-					key
-				)
-			)
 			---@diagnostic disable-next-line: no-unknown
 			opts[key] = nil
 		end
